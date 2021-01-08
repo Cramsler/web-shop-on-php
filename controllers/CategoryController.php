@@ -3,13 +3,15 @@
 
 namespace app\controllers;
 
-
+use app\models\Good;
 use yii\web\Controller;
 
 class CategoryController extends Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        $goods = new Good();
+        $goods = $goods->getAllGoods();
+        return $this->render('index', compact('goods'));
     }
 }
