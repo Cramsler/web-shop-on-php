@@ -1,7 +1,8 @@
-<?= \app\widgets\MenuWidget::widget(); ?>
 <div class="container">
-    <div class="row">
-        <?php foreach ($goods as $good) : ?>
+    <h2 style="text-align: center">Результаты поиска по запросу: "<?= $search ?>"</h2>
+    <?php if ($catGoods) : ?>
+    <div class="row justify-content-center">
+        <?php foreach ($catGoods as $good) : ?>
             <div class="col-4">
                 <div class="product">
                     <div class="product-img">
@@ -17,5 +18,9 @@
                 </div>
             </div>
         <?php endforeach; ?>
+        <?php endif; ?>
+        <?php if (!$catGoods) : ?>
+            <h4 style="text-align: center"> Ничего не найдено :(</h4>
+        <?php endif; ?>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <?= \app\widgets\MenuWidget::widget(); ?>
 <div class="container">
-    <div class="row">
-        <?php foreach ($goods as $good) : ?>
+    <div class="row justify-content-center">
+        <?php foreach ($catGoods as $good) : ?>
             <div class="col-4">
                 <div class="product">
                     <div class="product-img">
