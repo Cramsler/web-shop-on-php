@@ -1,6 +1,4 @@
-$('.cart').on('click', function () {
-    $('#cart').modal('show');
-});
+
 
 $('.product-button__add').on('click', function (event) {
     event.preventDefault();
@@ -8,7 +6,7 @@ $('.product-button__add').on('click', function (event) {
     console.log(name);
 
     $.ajax({
-        url: 'cart/cart',
+        url: '/cart/cart',
         data: {name: name},
         type: 'GET',
 
