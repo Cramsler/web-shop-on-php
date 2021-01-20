@@ -1,4 +1,19 @@
+ $('.cartOpen').click(function (event){
+     event.preventDefault();
 
+     $.ajax({
+         url: 'cart/open',
+         type: 'GET',
+
+         success: function (res){
+             $('#cart .modal-content').html(res);
+             $('#cart').modal('show');
+         },
+         error: function () {
+             alert('ошибка');
+         }
+     })
+ })
 
 $('.product-button__add').on('click', function (event) {
     event.preventDefault();
@@ -7,7 +22,7 @@ $('.product-button__add').on('click', function (event) {
 
     $.ajax({
         url: '/cart/cart',
-        data: {name: name},
+        data:  {name: name},
         type: 'GET',
 
         success: function (res){
