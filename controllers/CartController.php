@@ -4,12 +4,36 @@
 namespace app\controllers;
 
 use app\models\Cart;
+use app\models\Order;
+use app\models\OrderGood;
 use Yii;
 use app\models\Good;
 use yii\web\Controller;
 
 class CartController extends Controller
 {
+    public  function actionOrder()
+    {
+        $session = Yii::$app->session;
+        $session->open();
+        $order = new Order();
+        if ($order->load(Yii::$app->request->post()))
+        {
+            $order->date = date('Y-m-d H:i:s');
+            $order->sum = $session['cart.totalSum'];
+            if($order->save())
+            {
+                $session->remove('cart');
+                $session->remove('cart.totalQuantity');
+                $session->remove('cart.totalSum');
+                return $this->render('success', compact('session'));
+            }
+
+        }
+        $this->layout = 'empty_layout';
+        return $this->render('order', compact('session', 'order'));
+    }
+
     public function actionOpen()
     {
         $session = Yii::$app->session;

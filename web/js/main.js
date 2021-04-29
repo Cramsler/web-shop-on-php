@@ -1,3 +1,21 @@
+const modal = $('.modal-content'); //Модальное окно
+
+//Кнопка оформить заказ
+modal.on('click', '.btn-next', function () {
+    $.ajax({
+        url: '/cart/order',
+        type: 'GET',
+        success: function (res){
+            $('#order .modal-content').html(res);
+            $('#cart').modal('hide');
+            $('#order').modal('show');
+        },
+        error: function () {
+            alert('ошибка');
+        }
+    })
+})
+
 //Открытие корзины
 $('.cartOpen').on('click', function (event){
      event.preventDefault();
@@ -15,7 +33,7 @@ $('.cartOpen').on('click', function (event){
  })
 
 //Очистка корзины
- $('.modal-content').on('click', '.clear-cart', function (event){
+modal.on('click', '.clear-cart', function (event){
      event.preventDefault();
      if (confirm('Вы точно хотите очистить корзину?'))
      {
@@ -53,12 +71,12 @@ $('.product-button__add').on('click', function (event) {
 })
 
 //закрытие модалки при нажатии на кнопку 'продолжить покупки'
-$('.modal-content').on('click', '.btn-close', function (){
+modal.on('click', '.btn-close', function (){
     $('#cart').modal('hide');
 })
 
 //удаление строки с товаром
-$('.modal-content').on('click', '.delete', function (){
+modal.on('click', '.delete', function (){
     let id = $(this).data('id');
     $.ajax({
         url: '/cart/delete',
