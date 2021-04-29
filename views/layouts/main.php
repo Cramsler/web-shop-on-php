@@ -32,7 +32,16 @@ AppAsset::register($this);
         <div class="container">
             <div class="header">
                 <a href="/">На главную</a>
-                <a href="#">Вход в админку</a>
+                <?php if (!Yii::$app->user->isGuest) :?>
+                <a href="/admin">Админка</a>
+                <?php endif; ?>
+
+                <?php if(Yii::$app->user->isGuest): ?>
+                    <a href="/admin/login">Вход в админку</a>
+                <?php else : ?>
+                    <a href="/admin/logout">Выход из админки</a>
+                <?php endif; ?>
+
                 <a href="#" class="cartOpen">Корзина
                     <span class="menu-quantity">(<?= $_SESSION['cart.totalQuantity'] ? $_SESSION['cart.totalQuantity'] : 0 ?>)</span>
                 </a>

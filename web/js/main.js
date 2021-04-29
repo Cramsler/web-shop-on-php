@@ -42,6 +42,7 @@ modal.on('click', '.clear-cart', function (event){
              type: 'GET',
              success: function (res){
                  $('#cart .modal-content').html(res);
+                 $('.menu-quantity').html('(0)')
              },
              error: function () {
                  alert('ошибка');
