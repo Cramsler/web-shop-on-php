@@ -31,7 +31,7 @@ class CartController extends Controller
                 $currentId = $order->id;
                 $this->saveOrderInfo($session['cart'], $currentId);
 //                Yii::$app->mailer->compose('order-mail', ['session' => $session, 'order' => $order])
-//                    ->setFrom(['Aleksandrglazunov26@gmail.com' => 'test test test'])
+//                    ->setFrom(['Aleks@example.com' => 'test test test'])
 //                    ->setTo($order->email)
 //                    ->setSubject('Ваш заказ принят к исполнению')
 //                    ->send();
